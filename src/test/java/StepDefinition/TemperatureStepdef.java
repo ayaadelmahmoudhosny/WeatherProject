@@ -5,11 +5,16 @@ import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.PendingException;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,6 +23,8 @@ import org.testng.annotations.BeforeClass;
 
 import org.openqa.selenium.WebElement;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -49,8 +56,11 @@ public class TemperatureStepdef {
         options.setPlatformName("Android");
         options.setAutomationName("UiAutomator2");
         options.setApp("//Users//ayaadel//Desktop//Weather Forecast//Weather forecast_82.01_APKPure.apk");
+
         options.setCapability("noReset", false);
         options.setCapability("fullReset", true);
+
+
         options.setCapability("autoGrantPermissions", true);
         options.setCapability("adbExecTimeout", 60000);
         driver = new AndroidDriver(service.getUrl(), options);//new URI("http://127.0.0.1:4723").toURL()
@@ -136,5 +146,18 @@ public class TemperatureStepdef {
     @After
     public void TearDown(){
         driver.quit();
+    }
+
+    @AfterStep
+    public void AddScreenshot(Scenario scenario) throws IOException
+    {
+
+            //screenshot
+            File sourcePath= 	((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            byte[] fileContent = FileUtils.readFileToByteArray(sourcePath);
+            scenario.attach(fileContent, "image/png", "image");
+
+
+
     }
 }
