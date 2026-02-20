@@ -8,6 +8,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 import utils.AndroidActions;
+import utils.TestSetup;
 
 import java.util.List;
 
@@ -16,6 +17,10 @@ public class HomePage extends AndroidActions {
 
     By weatherScrollPage = AppiumBy.xpath("//*[@resource-id='com.graph.weather.forecast.channel:id/scroll_page_ads']");
     By hourRecycler = AppiumBy.xpath("//*[@resource-id='com.graph.weather.forecast.channel:id/rvHour']");
+
+    public HomePage(TestSetup setup) {
+        super(setup);
+    }
 
     public List<WebElement> getHourRows() {
         return GetElement(hourRecycler);

@@ -3,6 +3,7 @@ package utils;
 import io.appium.java_client.android.AndroidDriver;
 
 public class TestSetup {
+
     public AndroidDriver driver;
 
     public AndroidDriver getDriver() {

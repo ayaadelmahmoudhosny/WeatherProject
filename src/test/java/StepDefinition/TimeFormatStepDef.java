@@ -3,13 +3,18 @@ package StepDefinition;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.SettingPage;
-import utils.DriverManager;
+import utils.DriverConfiguration;
+import utils.TestSetup;
 
 import java.io.IOException;
 
-public class TimeFormatStepDef extends DriverManager {
+public class TimeFormatStepDef extends DriverConfiguration {
 
-    private SettingPage settingObject = new SettingPage();
+    private final SettingPage settingObject;
+
+    public TimeFormatStepDef(TestSetup setup) {
+        this.settingObject = new SettingPage(setup); // page object with driver
+    }
 
     @When("User taps on time format button")
     public void userTapsOnTimeFormatButton() throws IOException {
@@ -23,8 +28,4 @@ public class TimeFormatStepDef extends DriverManager {
 
         //Assert.assertTrue(settingObject.isTimeFormatTwelve(), "Time is 12");
     }
-
-
-
-
 }

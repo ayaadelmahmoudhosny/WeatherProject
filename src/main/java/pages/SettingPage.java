@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import utils.AndroidActions;
+import utils.TestSetup;
 
 
 //Main Objects on screen elements and functions
@@ -16,6 +17,10 @@ public class SettingPage extends AndroidActions {
     By tempToggle = AppiumBy.xpath("//*[@resource-id='com.graph.weather.forecast.channel:id/tgTemperature_setting']");
     By timeFormatToggle = AppiumBy.xpath("//*[@resource-id='com.graph.weather.forecast.channel:id/tg_format_time_setting']");
     By doneButton = AppiumBy.xpath("//*[@resource-id='com.graph.weather.forecast.channel:id/tvDone']");
+
+    public SettingPage(TestSetup setup) {
+        super(setup);
+    }
 
     //click on temperature toggle
     public void tapTemperatureToggle() {
