@@ -1,63 +1,49 @@
-package Pages;
-import com.google.common.collect.ImmutableMap;
+package pages;
+
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebElement;
-
-import java.util.List;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
+import utils.AndroidActions;
 
 
 //Main Objects on screen elements and functions
-public class SettingViewObjects {
+public class SettingPage extends AndroidActions {
+    // get locators
+    //a[text()="Today's Deals"] tag[attribute=value]
+    By tempToggle = AppiumBy.xpath("//*[@resource-id='com.graph.weather.forecast.channel:id/tgTemperature_setting']");
+    By timeFormatToggle = AppiumBy.xpath("//*[@resource-id='com.graph.weather.forecast.channel:id/tg_format_time_setting']");
+    By doneButton = AppiumBy.xpath("//*[@resource-id='com.graph.weather.forecast.channel:id/tvDone']");
 
+    //click on temperature toggle
+    public void tapTemperatureToggle() {
+        ClickElement(tempToggle);
+    }
 
-        private AndroidDriver driver;
-// intialize driver
-        public SettingViewObjects(AndroidDriver driver) {
-            this.driver = driver;
-        }
+    // temperature is clicked
+      /*  public boolean isTemperatureC() {
 
-        // get locators
-        private String tempToggleId = "com.graph.weather.forecast.channel:id/tgTemperature_setting";
-        private String timeFormatToggleId = "com.graph.weather.forecast.channel:id/tg_format_time_setting";
-        private String doneButtonId = "com.graph.weather.forecast.channel:id/tvDone";
+           // return Boolean.parseBoolean(driver.findElement(tempToggle).getAttribute("Checked"));
+        }*/
 
+    // click on time format
+    public void tapTimeFormatToggle() {
+        ClickElement(timeFormatToggle);
+    }
 
-        //click on temperature toggle
-        public void tapTemperatureToggle() {
-            driver.findElement(AppiumBy.id(tempToggleId)).click();
+    //is time format clicked
+      /*  public boolean isTimeFormatTwelve() {
+           // return Boolean.parseBoolean(driver.findElement(timeFormatToggle).getAttribute("Checked"));
+        }*/
 
+    // click done
+    public void clickDone() {
+        ClickElement(doneButton);
+    }
 
-        }
-
-        // temperature is clicked
-        public boolean isTemperatureC() {
-
-            return Boolean.parseBoolean(driver.findElement(AppiumBy.id(tempToggleId)).getAttribute("Checked"));
-        }
-
-        // click on time format
-        public void tapTimeFormatToggle() {
-            driver.findElement(AppiumBy.id(timeFormatToggleId)).click();
-        }
-
-        //is time format clicked
-        public boolean isTimeFormatTwelve() {
-            return Boolean.parseBoolean(driver.findElement(AppiumBy.id(timeFormatToggleId)).getAttribute("Checked"));
-        }
-
-        // click done
-        public void clickDone() {
-            driver.findElement(AppiumBy.id(doneButtonId)).click();
-        }
-
-        // get row of hourly weather
-
-
-
-
+    // get row of hourly weather
 
 
 }

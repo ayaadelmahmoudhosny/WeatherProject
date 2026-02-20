@@ -30,7 +30,12 @@
       <artifactId>cucumber-java</artifactId>
       <version>7.31.0</version>
     </dependency>
-
+    <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-picocontainer</artifactId>
+      <version>7.31.0</version>
+    </dependency>
 
     <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
     <dependency>
@@ -38,12 +43,7 @@
       <artifactId>cucumber-testng</artifactId>
       <version>7.31.0</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-picocontainer</artifactId>
-      <version>7.31.0</version>
-    </dependency>
+
 
     <dependency>
       <groupId>org.testng</groupId>

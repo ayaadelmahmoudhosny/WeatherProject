@@ -1,42 +1,31 @@
-package Pages;
+package pages;
+
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
+import utils.AndroidActions;
 
 import java.util.List;
 
 
+public class HomePage extends AndroidActions {
 
-public class WeatherViewObjects {
-    private AndroidDriver driver;
-    private String weatherScrollPage = "new UiSelector().resourceId(\"com.graph.weather.forecast.channel:id/scroll_page_ads\")";
-    private String hourRecyclerId = "com.graph.weather.forecast.channel:id/rvHour";
-
-    public WeatherViewObjects(AndroidDriver driver) {
-        this.driver = driver;
-    }
+    By weatherScrollPage = AppiumBy.xpath("//*[@resource-id='com.graph.weather.forecast.channel:id/scroll_page_ads']");
+    By hourRecycler = AppiumBy.xpath("//*[@resource-id='com.graph.weather.forecast.channel:id/rvHour']");
 
     public List<WebElement> getHourRows() {
-        return driver.findElement(AppiumBy.id(hourRecyclerId))
-                .findElements(AppiumBy.xpath("./*"));
+        return GetElement(hourRecycler);
     }
 
-
-    // scroll to weather screen
-    public WebElement scrollWeatherPage() {
-        return driver.findElement(AppiumBy.androidUIAutomator(weatherScrollPage));
+    public void SwipeLayout() {
+        SwipeAction(weatherScrollPage, "left");
     }
 
-    // swipe gesture
-    public void SwipeAction(WebElement layout, String dir) {
-        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
-                "elementId", ((RemoteWebElement) layout).getId(),
-                "direction", dir,
-                "percent", 0.75
-        ));
+    public void SwipeHoursRow() {
+        SwipeAction(hourRecycler, "left");
     }
-
 }

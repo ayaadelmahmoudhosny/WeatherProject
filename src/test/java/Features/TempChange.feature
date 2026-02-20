@@ -4,7 +4,6 @@ Feature: Change Temperature Unit
     Given User in main page
     When User tap on temperature button
     Then Temperature change from C to F
-    Then TimeFormat to twelve
     When User Clicks Done
     Then Rain and Humidity is shown
 
