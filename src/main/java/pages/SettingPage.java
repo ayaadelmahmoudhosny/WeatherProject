@@ -1,4 +1,4 @@
-package CucumberObject;
+package Pages;
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
@@ -10,12 +10,12 @@ import java.util.List;
 
 
 //Main Objects on screen elements and functions
-public class MainObjects {
+public class SettingViewObjects {
 
 
         private AndroidDriver driver;
 // intialize driver
-        public MainObjects(AndroidDriver driver) {
+        public SettingViewObjects(AndroidDriver driver) {
             this.driver = driver;
         }
 
@@ -23,8 +23,7 @@ public class MainObjects {
         private String tempToggleId = "com.graph.weather.forecast.channel:id/tgTemperature_setting";
         private String timeFormatToggleId = "com.graph.weather.forecast.channel:id/tg_format_time_setting";
         private String doneButtonId = "com.graph.weather.forecast.channel:id/tvDone";
-        private String weatherScrollPage = "new UiSelector().resourceId(\"com.graph.weather.forecast.channel:id/scroll_page_ads\")";
-        private String hourRecyclerId = "com.graph.weather.forecast.channel:id/rvHour";
+
 
         //click on temperature toggle
         public void tapTemperatureToggle() {
@@ -55,25 +54,8 @@ public class MainObjects {
         }
 
         // get row of hourly weather
-        public List<WebElement> getHourRows() {
-            return driver.findElement(AppiumBy.id(hourRecyclerId))
-                    .findElements(AppiumBy.xpath("./*"));
-        }
 
 
-    // scroll to weather screen
-    public WebElement scrollWeatherPage() {
-        return driver.findElement(AppiumBy.androidUIAutomator(weatherScrollPage));
-    }
-
-    // swipe gesture
-    public void SwipeAction(WebElement layout, String dir) {
-        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
-                "elementId", ((RemoteWebElement) layout).getId(),
-                "direction", dir,
-                "percent", 0.75
-        ));
-    }
 
 
 
